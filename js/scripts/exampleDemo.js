@@ -102,7 +102,7 @@ var USER_ACCOUNT_DATA_LAYOUT = borsh.struct([
     borsh.str("movie"),
     borsh.str("message")
 ]);
-function main(movie, description) {
+function main(movie, description, rating) {
     return __awaiter(this, void 0, void 0, function () {
         var tx, userInfo, payload, msgBuffer, postIxData, ix, signers, txid;
         return __generator(this, function (_a) {
@@ -118,7 +118,7 @@ function main(movie, description) {
                     payload = {
                         variant: 0,
                         movie: movie,
-                        rating: 5,
+                        rating: rating,
                         message: description,
                     };
                     msgBuffer = buffer_1.Buffer.alloc(1000);
@@ -265,14 +265,15 @@ function fetch(pda) {
         });
     });
 }
-var movie = "batman";
-var description = "robert pattison plays batman";
+var movie = "the other guys";
+var description = "the other guys is a very funny movie with lots of Little River Band";
+var rating = 5;
 //const testPDA = new PublicKey("EtNgdPp6p8bKgmB2jivcUXn8hBvAM6ET82S3wrhGmdQa");
 var testPDA2 = new PublicKey("CLs4enTTZSL6UL9bAmNGYnxtMiYh8q8Ly5q1tuA1HLSS");
 //order()
 //fetchMultipleAccounts(1)
-fetch(testPDA2)
-    //main(movie, description)
+//fetch(testPDA2)
+main(movie, description, rating)
     .then(function () {
     console.log("Success");
 })

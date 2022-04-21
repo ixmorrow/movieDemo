@@ -57,7 +57,7 @@ const {
     borsh.str("message")
   ])
 
-  async function main(movie: string, description: string) {
+  async function main(movie: string, description: string, rating: number) {
     console.log("Program id: " + program_id.toBase58());
     console.log("Fee payer: " + feePayer.publicKey);
 
@@ -72,7 +72,7 @@ const {
     const payload = {
       variant: 0,
       movie: movie,
-      rating: 5,
+      rating: rating,
       message: description,
     }
     const msgBuffer = Buffer.alloc(1000);
@@ -192,15 +192,16 @@ async function fetchMultipleAccounts(begin){
   }
 
 
-  const movie = "batman";
-  const description = "robert pattison plays batman";
+  const movie = "the other guys";
+  const description = "the other guys is a very funny movie with lots of Little River Band";
+  const rating = 5;
   //const testPDA = new PublicKey("EtNgdPp6p8bKgmB2jivcUXn8hBvAM6ET82S3wrhGmdQa");
   const testPDA2 = new PublicKey("CLs4enTTZSL6UL9bAmNGYnxtMiYh8q8Ly5q1tuA1HLSS");
 
   //order()
   //fetchMultipleAccounts(1)
   //fetch(testPDA2)
-  main(movie, description)
+  main(movie, description, rating)
   .then(() => {
     console.log("Success");
   })
