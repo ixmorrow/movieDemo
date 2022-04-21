@@ -9,7 +9,7 @@ The program accepts a few different inputs from the user
   * rating (out of 5)
 
 ## Testing
-To run the testing script, you will have to 'NPM Install' the dependencies and then run the js file with 'node exampleDemo.js'
+To run the testing script, you will have to 'NPM Install' the dependencies, compile the ts file to js by running npx tsc within the js directory, and then a /dist directory will be added with the compiled js file in it. Move into that directory and run 'node exampleDemo.js'.
 
 If you make changes to the ts file, then you will have re-compile it to js with the command 'npx tsc' and then follow the step above to run the newly compiled js file.
 
