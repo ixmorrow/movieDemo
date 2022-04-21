@@ -1,12 +1,15 @@
-# Student Intros
-This program is currently deployed on the Solana Devnet at [Program ID: 6wNDDbfhqyY8Nm8H2dzAPywjt2D7VKfBzKuSjE3pcgVr](https://explorer.solana.com/address/6wNDDbfhqyY8Nm8H2dzAPywjt2D7VKfBzKuSjE3pcgVr?cluster=devnet)
+# Favorite Movies
+This program is currently deployed on the Solana Devnet at [Program ID: 4X5hVHsHeGHjLEB9hrUqQ57sEPcYPPfW54fndmQrsgCF](https://explorer.solana.com/address/4X5hVHsHeGHjLEB9hrUqQ57sEPcYPPfW54fndmQrsgCF?cluster=devnet)
 
-The purpose of this program is to allow students to provide an intro about themselves with info like how long they have been a dev, how/why they got into solana, and what they expect to get out of the course. 
+The purpose of this program is to provide another example program for the students to interact with in the demo portion of the serialization, deserializaion, and pagination sections.
 
-In the program's current implementation, the PDA created to store this information can only store 129 bytes of data. The first byte is a boolean variable to indicate that the account is initialized, the next 128 bytes are for encoding the string passed in as a parameter. Only the first 128 characters of the string will be encoded to the state account. If the message is less than 128 characters, the program will pad the buffer with 0's until it is the desired 128 bytes long.
+The program accepts a few different inputs from the user
+  * movie title
+  * description of the movie
+  * rating (out of 5)
 
 ## Testing
-To run the testing script, you will have to 'NPM Install' the dependencies and then run the js file with 'node exampleStudentIntroV2.js'
+To run the testing script, you will have to 'NPM Install' the dependencies and then run the js file with 'node exampleDemo.js'
 
 If you make changes to the ts file, then you will have re-compile it to js with the command 'npx tsc' and then follow the step above to run the newly compiled js file.
 
