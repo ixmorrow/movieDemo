@@ -13,7 +13,6 @@ use solana_program::{
 };
 use crate::{instruction::IntroInstruction, state::MovieInfo};
 use crate::{error::IntroError};
-use std::io::Write;
 use borsh::{ BorshDeserialize, BorshSerialize };
 
 
