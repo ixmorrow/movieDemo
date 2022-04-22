@@ -9,9 +9,9 @@ The program accepts a few different inputs from the user
   * rating (out of 5)
 
 ## Testing
-To run the testing script, you will have to 'NPM Install' the dependencies, compile the ts file to js by running npx tsc within the js directory, and then a /dist directory will be added with the compiled js file in it. Move into that directory and run 'node exampleDemo.js'.
+To run the testing script, you will have to 'NPM Install' the dependencies. Once you've installed the dependencies, running 'npm start' inside the /js dir will compile and run the 'exampleDemo.ts' file.
 
-If you make changes to the ts file, then you will have re-compile it to js with the command 'npx tsc' and then follow the step above to run the newly compiled js file.
+If you make changes to the ts file, all you need to do is save and run 'npm start' again.
 
 ## Program Updates
 The program is currently deployed to devnet. If we want to make changes to the program side code either I will have to implement these changes and then re-deploy the program to the same program id or someone else can make the changes and deploy them to a new program id. Only the initial author has the authority to push updates to a program at a specific program id.
