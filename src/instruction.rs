@@ -11,17 +11,17 @@ pub enum IntroInstruction {
     /// 2. `[writable]` Post account derived from PDA
     /// 3. `[]` System Program
     InitMovieRating {
-        movie: String,
+        title: String,
         rating: u8,
-        message: String,
+        description: String,
     }
 }
 
 #[derive(BorshDeserialize, Debug)]
 struct PostIxPayload {
-    movie: String,
+    title: String,
     rating: u8,
-    message: String,
+    description: String,
 }
 
 impl IntroInstruction {
@@ -33,9 +33,9 @@ impl IntroInstruction {
 
         Ok(match variant {
             0 => Self::InitMovieRating {
-                movie: payload.movie,
+                title: payload.title,
                 rating: payload.rating,
-                message: payload.message
+                description: payload.description
             },
             _ => return Err(InstructionUnpackError.into()),
         })

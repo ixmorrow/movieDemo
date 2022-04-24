@@ -18,6 +18,12 @@ const {
 
   const feePayer = Keypair.generate();
 
+   // MY WALLET SETTING
+    // const id_json_path = require('os').homedir() + "/.config/solana/test-wallet.json";
+    // const secret = Uint8Array.from(JSON.parse(require("fs").readFileSync(id_json_path)));
+    // const feePayer = Keypair.fromSecretKey(secret as Uint8Array);
+
+
   const userInputIx = (i: Buffer, user: typeof PublicKey, userInfo: typeof PublicKey) => {
     return new TransactionInstruction({
       keys: [
@@ -44,36 +50,40 @@ const {
 
   const IX_DATA_LAYOUT = borsh.struct([
     borsh.u8("variant"),
-    borsh.str("movie"),
+    borsh.str("title"),
     borsh.u8("rating"),
-    borsh.str("message"),
+    borsh.str("description"),
   ]);
 
 
   const USER_ACCOUNT_DATA_LAYOUT = borsh.struct([
     borsh.u8("initialized"),
     borsh.u8("rating"),
-    borsh.str("movie"),
-    borsh.str("message")
+    borsh.str("title"),
+    borsh.str("description")
   ])
 
-  async function main(movie: string, description: string, rating: number) {
+  async function main(title: string, description: string, rating: number) {
     console.log("Program id: " + program_id.toBase58());
     console.log("Fee payer: " + feePayer.publicKey);
 
     const tx = new Transaction();
 
+    let utf8Encode = new TextEncoder();
+    let buff = utf8Encode.encode(title);
+    console.log(buff);
+
     const userInfo = (await PublicKey.findProgramAddress(
-      [feePayer.publicKey.toBuffer()],
+      [feePayer.publicKey.toBuffer(), buff],
       program_id
     ))[0];
     console.log("PDA: " + userInfo);
 
     const payload = {
       variant: 0,
-      movie: movie,
+      title: title,
       rating: rating,
-      message: description,
+      description: description,
     }
     const msgBuffer = Buffer.alloc(1000);
     IX_DATA_LAYOUT.encode(payload, msgBuffer);
@@ -186,22 +196,22 @@ async function fetchMultipleAccounts(begin){
       account.data
     );
 
-    console.log("Movie:", userData.movie);
+    console.log("Movie:", userData.title);
     console.log("Rating:", userData.rating);
-    console.log("Description:", userData.message);
+    console.log("Description:", userData.description);
   }
 
 
-  const movie = "the other guys";
-  const description = "the other guys is a very funny movie with lots of Little River Band";
+  const movie = "Anaconda";
+  const description = "big snake in the Amazon";
   const rating = 5;
   //const testPDA = new PublicKey("EtNgdPp6p8bKgmB2jivcUXn8hBvAM6ET82S3wrhGmdQa");
-  const testPDA2 = new PublicKey("CLs4enTTZSL6UL9bAmNGYnxtMiYh8q8Ly5q1tuA1HLSS");
-
+  const testPDA2 = new PublicKey("8TL9CifUEx8vowFniDfbZo2W5ef8Hvdni5GYHh12g9BK");
+  
   //order()
   //fetchMultipleAccounts(1)
-  fetch(testPDA2)
-  //main(movie, description, rating)
+  //fetch(testPDA2)
+  main(movie, description, rating)
   .then(() => {
     console.log("Success");
   })

@@ -7,8 +7,8 @@ use borsh::{BorshDeserialize, BorshSerialize};
 pub struct MovieInfo {
     pub is_initialized: bool,
     pub rating: u8,
-    pub movie: String,
-    pub message: String,
+    pub title: String,
+    pub description: String,
 }
 
 impl Sealed for MovieInfo {}

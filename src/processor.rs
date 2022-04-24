@@ -38,7 +38,7 @@ impl Processor {
         let account_info_iter = &mut accounts.iter();
 
         match instruction {
-        IntroInstruction::InitMovieRating {movie, rating, message}  => {
+        IntroInstruction::InitMovieRating {title, rating, description}  => {
             msg!("Initialize movie rating account");
             let initializer = next_account_info(account_info_iter)?;
 
@@ -51,10 +51,10 @@ impl Processor {
             let system_program = next_account_info(account_info_iter)?;
             
             msg!("finding pda");
-            let (pda, bump_seed) = Pubkey::find_program_address(&[initializer.key.as_ref(),], program_id);
+            let (pda, bump_seed) = Pubkey::find_program_address(&[initializer.key.as_ref(), title.as_bytes().as_ref(),], program_id);
             msg!("pda: {}", pda);
 
-            let account_len: usize = 1 + 1 + (4 + movie.len()) + (4 + message.len());
+            let account_len: usize = 1 + 1 + (4 + title.len()) + (4 + description.len());
             let rent = Rent::get()?;
             let rent_lamports = rent.minimum_balance(account_len);
 
@@ -68,7 +68,7 @@ impl Processor {
                     program_id,
                 ),
                 &[initializer.clone(), user_account.clone(), system_program.clone()],
-                &[&[initializer.key.as_ref(), &[bump_seed]]],
+                &[&[initializer.key.as_ref(), title.as_bytes().as_ref(), &[bump_seed]]],
             )?;
 
             assert_with_msg(
@@ -82,7 +82,7 @@ impl Processor {
                 "Invalid PDA seeds for user account",
             )?;
 
-            msg!("Movie: {}", movie);
+            msg!("Movie: {}", title);
             if !rent.is_exempt(user_account.lamports(), user_account.data_len()) {
                 msg!("user account is not rent exempt");
                 return Err(IntroError::NotRentExempt.into());
@@ -97,9 +97,9 @@ impl Processor {
                 return Err(ProgramError::AccountAlreadyInitialized);
             }
 
-            account_data.movie = movie;
+            account_data.title = title;
             account_data.rating = rating;
-            account_data.message = message;
+            account_data.description = description;
             account_data.is_initialized = true;
             
             msg!("serializing account");
