@@ -107,9 +107,8 @@ impl Processor {
             msg!("state account serialized");
 
             sol_log_compute_units();
-
+            Ok(())
         }
+
     }
-    
-    Ok(())
 }}

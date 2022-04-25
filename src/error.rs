@@ -6,7 +6,7 @@ use thiserror::Error;
 pub enum IntroError{
     // 0
     /// Invalid instruction data passed in.
-    #[error("Failed to unpack instruction data")]
+    #[error("Invalid instruction")]
     InstructionUnpackError,
     // 1
     // Account already initialized
@@ -24,6 +24,10 @@ pub enum IntroError{
     // Error in unpack from slice
     #[error("Error in unpack from slice of state account")]
     UnpackFromSliceError,
+    // 5
+    // Error in processing function
+    #[error("Error processing instruction")]
+    ProcessInstructionError,
 }
 
 impl From<IntroError> for ProgramError {

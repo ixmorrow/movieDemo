@@ -18,7 +18,7 @@ const {
 
   const feePayer = Keypair.generate();
 
-   // MY WALLET SETTING
+    // MY WALLET SETTING
     // const id_json_path = require('os').homedir() + "/.config/solana/test-wallet.json";
     // const secret = Uint8Array.from(JSON.parse(require("fs").readFileSync(id_json_path)));
     // const feePayer = Keypair.fromSecretKey(secret as Uint8Array);
