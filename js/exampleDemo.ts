@@ -14,7 +14,8 @@ const {
   const RPC_ENDPOINT_URL = "https://api.devnet.solana.com";
   const commitment = 'confirmed';
   const connection = new Connection(RPC_ENDPOINT_URL, commitment);
-  const program_id = new PublicKey("4X5hVHsHeGHjLEB9hrUqQ57sEPcYPPfW54fndmQrsgCF");
+  //const program_id = new PublicKey("4X5hVHsHeGHjLEB9hrUqQ57sEPcYPPfW54fndmQrsgCF");
+  const program_id = new PublicKey("CenYq6bDRB7p73EjsPEpiYN7uveyPUTdXkDkgUduboaN");
 
   const feePayer = Keypair.generate();
 
