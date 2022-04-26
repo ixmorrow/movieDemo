@@ -1,5 +1,5 @@
 # Favorite Movies
-This program is currently deployed on the Solana Devnet at [Program ID: 4X5hVHsHeGHjLEB9hrUqQ57sEPcYPPfW54fndmQrsgCF](https://explorer.solana.com/address/4X5hVHsHeGHjLEB9hrUqQ57sEPcYPPfW54fndmQrsgCF?cluster=devnet)
+This program is currently deployed on the Solana Devnet at [Program ID: CenYq6bDRB7p73EjsPEpiYN7uveyPUTdXkDkgUduboaN](https://explorer.solana.com/address/CenYq6bDRB7p73EjsPEpiYN7uveyPUTdXkDkgUduboaN?cluster=devnet)
 
 The purpose of this program is to provide another example program for the students to interact with in the demo portion of the serialization, deserializaion, and pagination sections.
 
